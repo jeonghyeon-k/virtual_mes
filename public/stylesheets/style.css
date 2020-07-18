@@ -1,0 +1,38 @@
+
+#navbar {
+  background-color: #A9A9A9;
+}
+#navbar .navbar-nav {
+  padding: 5px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+
+#navbar .nav-item {
+  width: 130px;
+  text-align: center;
+}
+#navbar .nav-item a {
+  color: black;
+}
+#navbar .nav-item a:hover {
+  color:#A52A2A	;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+
+#page-active .page-link {
+  background-color: #696969;
+  border: none;
+}
+.red {
+  color: red;
+
+}
+.blue {
+  color: blue;
+}
