@@ -23,6 +23,7 @@ const   users = require('./routes/users');
 const   step = require('./routes/step');
 const   orders = require('./routes/orders');
 const   status = require('./routes/status');
+const   system = require('./routes/system');
 
 // 실행환경 설정부분
 app.set('views', path.join(__dirname, 'views'));  // views경로 설정
@@ -45,10 +46,11 @@ app.use('/users', users);
 app.use('/step', step); 
 app.use('/orders', orders);
 app.use('/status', status);
+app.use('/system', system);
 
 
 
-const port = 3000;
+const port = 3001;
 app.listen(port, function(){
   console.log(`app listening at http://localhost:${port}`);
 });
