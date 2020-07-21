@@ -32,7 +32,8 @@ const systemcontrolUI = (req, res) => {
     htmlstream + fs.readFileSync(__dirname + "/../views/footer.ejs", "utf8"); // Footer
 
   res.writeHead(200, { "Content-Type": "text/html; charset=utf8" });
-  res.end(ejs.render(htmlstream, { title: "시스템 제어" }));
+  res.end(ejs.render(htmlstream, { title: "시스템 제어", 'loglabel': "로그아웃",
+  'logurl': '/users/logout' }));
 };
 
 //----------------생산 추가 화면 출력-------------------------------------
