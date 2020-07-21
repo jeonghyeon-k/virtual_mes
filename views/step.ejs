@@ -1,13 +1,22 @@
+
+<script>
+  $(document).ready(function(){
+    $("#reloadbtn").click(function(){
+      $("#steptable").load(window.location.href+" #steptable");
+    });
+  });
+  </script>
+
 <div> <img src="/images/banner.jpg" class="img-fluid" alt="배너이미지" width="100%"> </div>
 
 <div class="container">
 
-
-        <h3>| 실시간 작업 현황</h3>
+<div id="steptable">
+  <h3>| 실시간 작업 현황</h3>
         <hr>
         <input type="date" id="date" name="date" value="<%=today %>">
         <button type="button" class="btn btn-secondary">검색</button>
-        <button type="button" class="btn btn-secondary">새로 고침</button>
+        <button type="button" class="btn btn-secondary" id="reloadbtn">새로 고침</button>
 
 
         <table class="table table-striped" style="margin-top: 20px;">
@@ -71,5 +80,7 @@
                 <% }%>
               </ul>
               </nav>
+</div>
+        
 
 </div>
