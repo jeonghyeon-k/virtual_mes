@@ -14,7 +14,7 @@ const   db = mysql.createConnection({
      port: 3306,               // DB서버 Port주소
      user: 'root',            // DB접속 아이디
      password: 'gachon654321',  // DB암호
-     database: 'gbridge'         //사용할 DB명
+     database: 'bridge'         //사용할 DB명
 });
 
 

@@ -13,7 +13,7 @@ const   db = mysql.createConnection({
      port: 3306,               // DB서버 Port주소
      user: 'root',            // DB접속 아이디
      password: 'gachon654321',  // DB암호
-     database: 'gbridge'         //사용할 DB명
+     database: 'bridge'         //사용할 DB명
  });
 
 
@@ -29,7 +29,7 @@ const   db = mysql.createConnection({
     htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');  // navbar
 
     if(req.session.auth){
-        htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/step5.ejs','utf8');  
+        htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/main.ejs','utf8');  
     }
     else{
         htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/login.ejs','utf8'); 

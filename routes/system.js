@@ -11,12 +11,156 @@ let factorytime;
 let factorystate;
 let car = 0;
 
-function sleep(ms) {
-    var ts2;
-    var ts1 = new Date().getTime() + ms;
-    do ts2 = new Date().getTime();
-    while (ts2 < ts1);
+let waiting = new Array();
+waiting[0] = 0;
+let factory1 = [
+  function press(value) {
+    console.log(value + "번째 프레스 단계 진입 !! (1번째단계)");
+    sleep(1000);
+  },
+  function bodyassembly(value) {
+    console.log(value + "번째 차체조립 단계 진입 !! (2번째단계)");
+    sleep(1000);
+  },
+  function coating(value) {
+    console.log(value + "번째 도장 단계 진입 !! (3번째단계)");
+    sleep(1000);
+  },
+  function design(value) {
+    console.log(value + "번째 의장 단계 진입 !! (4번째단계)");
+    sleep(1000);
+  },
+  function finaltest(value) {
+    console.log(value + "번째 최종테스트 단계 진입 !! (5번째단계)");
+    sleep(1000);
+  },
+  function casting(value) {
+    console.log(value + "번째 주조 단계 진입 !! (6번째단계)");
+    sleep(1000);
+  },
+  function forging(value) {
+    console.log(value + "번째 단조 단계 진입 !! (7번째단계)");
+    sleep(1000);
+  },
+  function sintering(value) {
+    console.log(value + "번째 소결 단계 진입 !! (8번째단계)");
+    sleep(1000);
+  },
+  function heattreatment(value) {
+    console.log(value + "번째 열처리 단계 진입 !! (9번째단계)");
+    sleep(1000);
+  },
+  function machining(value) {
+    console.log(value + "번째 기계가공 단계 진입 !! (10번째단계)");
+    sleep(1000);
+  },
+  function assemblyfixing(value) {
+    console.log(value + "번째 조립고정 단계 진입 !! (11번째단계)");
+    sleep(1000);
+  },
+  function complete(value) {
+    console.log(value + "번째 차량 완성 !! ");
+    sleep(1000);
   }
+];
+
+let factory2 = [
+  function press(value) {
+    console.log(value + "번째 프레스 단계 진입 !! (1번째단계)");
+    sleep(1000);
+  },
+  function bodyassembly(value) {
+    console.log(value + "번째 차체조립 단계 진입 !! (2번째단계)");
+    sleep(1000);
+  },
+  function coating(value) {
+    console.log(value + "번째 도장 단계 진입 !! (3번째단계)");
+    sleep(1000);
+  },
+  function design(value) {
+    console.log(value + "번째 의장 단계 진입 !! (4번째단계)");
+    sleep(1000);
+  },
+  function finaltest(value) {
+    console.log(value + "번째 최종테스트 단계 진입 !! (5번째단계)");
+    sleep(1000);
+  },
+  function casting(value) {
+    console.log(value + "번째 주조 단계 진입 !! (6번째단계)");
+    sleep(1000);
+  },
+  function forging(value) {
+    console.log(value + "번째 단조 단계 진입 !! (7번째단계)");
+    sleep(1000);
+  },
+  function sintering(value) {
+    console.log(value + "번째 소결 단계 진입 !! (8번째단계)");
+    sleep(1000);
+  },
+  function heattreatment(value) {
+    console.log(value + "번째 열처리 단계 진입 !! (9번째단계)");
+    sleep(1000);
+  },
+  function machining(value) {
+    console.log(value + "번째 기계가공 단계 진입 !! (10번째단계)");
+    sleep(1000);
+  },
+  function assemblyfixing(value) {
+    console.log(value + "번째 조립고정 단계 진입 !! (11번째단계)");
+    sleep(1000);
+  },
+  function complete(value) {
+    console.log(value + "번째 차량 완성 !! ");
+    sleep(1000);
+  }
+];
+
+let turn = 0;
+let flag = 0;
+
+//나중에 DB에서 받을 예정 !!
+waiting = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11"];
+
+const factorysystem = function() {
+  let newwaiting = new Array();
+  for (let i = 0; i < waiting.length; i++) {
+    if (newwaiting[0] == 0) {
+      newwaiting[0] = waiting[0];
+    }else{
+      for(let j=newwaiting.length;j<0;j--){
+        if(j==11){
+          continue;
+        }else{
+          newwaiting[j+1]=newwaiting[j];
+        }
+      }
+      newwaiting[0] = waiting[i];
+    }
+    for(let p=0;p<newwaiting.length;p++){
+      console.log(newwaiting[p]);
+    }
+    console.log("--------");
+  }
+
+  if (waiting[turn]) {
+    //factory1[turn](waiting[turn]);
+    //factory2[turn](waiting[turn]);
+  }
+  if (turn == 11) {
+    turn = 0;
+  } else {
+    turn++;
+  }
+
+  factoryid = setTimeout(factorysystem, 10000);
+};
+
+function sleep(ms) {
+  var ts2;
+  var ts1 = new Date().getTime() + ms;
+  do ts2 = new Date().getTime();
+  while (ts2 < ts1);
+}
 
 //-----------------발주 현황----------------------------------------------------------------
 const systemcontrolUI = (req, res) => {
@@ -50,141 +194,27 @@ const systemcontrol = (req, res) => {
   }
   if (item) {
     console.log("process 실행 !!");
-    process(car);
+    //process(car);
+    //if (factorystate == 1) {
+    factorysystem();
+    // }else {
+    //  console.log("공장이 가동중이지 않습니다.")
+    // }
     car++;
   }
+
   res.redirect("/system");
 };
 
 const factory = msg => {
   if (msg == "startmsg") {
-    factorysystem();
+    console.log("공장 가동중...");
+    factorystate = 1;
   }
   if (msg == "stopmsg") {
     console.log("공장 가동중지");
     factorystate = 0;
-    //clearTimeout(factorytime);
   }
-};
-
-const factorysystem = function() {
-  console.log("공장 가동중...");
-  factorystate = 1;
-
-  //process();
-  //factorytime = setTimeout(factorysystem, 3000);
-};
-
-const process = function(car) {
-  /**
-   *  DB에 추가하기 !!
-   */
-  let state = true;
-  if (factorystate == 1) {
-    while (state) {
-      let flag = 0;
-      switch (flag) {
-        case 0:
-          press(car);
-          flag = 1;
-        case 1:
-          bodyassembly(car);
-          flag = 2;
-        case 2:
-          coating(car);
-          flag = 3;
-        case 3:
-          design(car);
-          flag = 4;
-        case 4:
-          finaltest(car);
-          flag = 5;
-        case 5:
-          casting(car);
-          flag = 6;
-        case 6:
-          forging(car);
-          flag = 7;
-        case 7:
-          sintering(car);
-          flag = 8;
-        case 8:
-          heattreatment(car);
-          flag = 9;
-        case 9:
-          machining(car);
-          flag = 10;
-        case 10:
-          assemblyfixing(car);
-          flag = 11;
-        case 11:
-          complete(car);
-          state = false;
-      }
-    }
-  } else {
-    console.log("공장이 작동중이 아닙니다.");
-  }
-  //timeid = setTimeout(process, 1000);
-};
-//프레스
-const press = function(car) {
-  console.log(car + "번째 프레스 단계 진입 !! (1번째단계) ");
-  sleep(1000);
-};
-//차체조립
-const bodyassembly = function(car) {
-  console.log(car + "번째 차체조립 단계 진입 !! (2번째단계)");
-  sleep(1000);
-};
-//도장
-const coating = function(car) {
-  console.log(car + "번째 도장 단계 진입 !! (3번째단계)");
-  sleep(1000);
-};
-//의장
-const design = function(car) {
-  console.log(car + "번째 의장 단계 진입 !! (4번째단계)");
-  sleep(1000);
-};
-//최종테스트
-const finaltest = function(car) {
-  console.log(car + "번째 최종테스트 단계 진입 !! (5번째단계)");
-  sleep(1000);
-};
-//주조
-const casting = function(car) {
-  console.log(car + "번째 주조 단계 진입 !! (6번째단계)");
-  sleep(1000);
-};
-//단조
-const forging = function(car) {
-  console.log(car + "번째 단조 단계 진입 !! (7번째단계)");
-  sleep(1000);
-};
-//소결
-const sintering = function(car) {
-  console.log(car + "번째 소결 단계 진입 !! (8번째단계)");
-  sleep(1000);
-};
-//열처리
-const heattreatment = function(car) {
-  console.log(car + "번째 열처리 단계 진입 !! (9번째단계)");
-  sleep(1000);
-};
-//기계가공
-const machining = function(car) {
-  console.log(car + "번째 기계가공 단계 진입 !! (10번째단계)");
-  sleep(1000);
-};
-//조립고정
-const assemblyfixing = function(car) {
-  console.log(car + "번째 조립고정 단계 진입 !! (11번째단계)");
-  sleep(1000);
-};
-//완성
-const complete = function(car) {
-  console.log(car + "번째 완성 단계 진입 !! ");
 };
 
 router.get("/", systemcontrolUI);
