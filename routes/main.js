@@ -29,7 +29,7 @@ const   db = mysql.createConnection({
     htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');  // navbar
 
     if(req.session.auth){
-        htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/step5.ejs','utf8');  
+        htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/main.ejs','utf8');  
     }
     else{
         htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/login.ejs','utf8'); 
