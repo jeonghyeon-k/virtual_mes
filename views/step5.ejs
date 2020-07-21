@@ -1,0 +1,43 @@
+<div> <img src="/images/banner.jpg" class="img-fluid" alt="배너이미지" width="100%"> </div>
+
+<div class="container">
+
+        
+        <span style="font-size: x-large;">| 실시간 작업 현황 </span><a href = "/step/list/1" class="btn btn-secondary">전체 보기</a>
+        <hr>
+        
+
+        <table class="table table-striped" style="margin-top: 20px;">
+            <thead class="thead">
+              <tr>
+                <th> 생산번호 </th>
+                <th> 생산품 </th>
+                <th> 진행단계 </th>
+                <th> 진행여부 </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% stepdata.forEach(function (item, index) { %>
+              <tr>
+                <td> <%= item.orderidx %> </td>
+                <td> <%= item.carname %> </td>
+                <td> <%= item.step %> </td>
+                <% if(item.state=="작업 중단") { %>
+                <td> <%= item.state %> ❗ </td>             
+                <td><button type="button" class="btn btn-primary btn-sm">작업 시작</button></td>
+                <% } else { %>
+                <td> <%= item.state %> </td>
+                <td><button type="button" class="btn btn-warning btn-sm">작업 중단</button></td>
+                <% } %>
+              </tr>
+              <% }); %>
+              </tbody>
+        
+
+            </table>
+            <hr>
+
+            
+
+</div>

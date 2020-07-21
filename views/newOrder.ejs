@@ -2,7 +2,7 @@
 <div class="container">
     <div class="jumbotron" style="width:400px; margin:auto">
 
-      <form>
+      <form method="post" action="/orders/neworder">
         <h5>생산 추가</h5>
         <hr>
         <div class="form-group">
@@ -22,15 +22,17 @@
             <label>수량</label>
             <input type="number" id="amount" name="amount" class="form-control" />
         </div>
+        <hr>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-block m-t-md" value="test" />
+          <button class="btn btn-block m-t-md" style="background-color:#778899;">생산 추가</button>
+        </div>
+        <div class="form-group" style="text-align: right;">
+          <a href="/orders" class="btn btn-outline-secondary m-t-md">목록</a>
+        </div>
        
       </form>
-      <hr>
-      <div class="form-group">
-        <button class="btn btn-block m-t-md" style="background-color:#778899;">생산 추가</button>
-      </div>
-      <div class="form-group" style="text-align: right;">
-        <a href="/orders" class="btn btn-outline-secondary m-t-md">목록</a>
-      </div>
+
     </div>
     <hr>
   </div>
