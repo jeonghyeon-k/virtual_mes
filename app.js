@@ -6,9 +6,21 @@ const   bodyParser = require('body-parser');
 const   createError = require('http-errors');
 const   path = require('path');
 const   app = express();
+const   mysql = require('mysql');
+
+const   db = mysql.createConnection({
+  host: 'localhost',        // DB서버 IP주소
+  port: 3306,               // DB서버 Port주소
+  user: 'root',            // DB접속 아이디
+  password: 'gachon654321',  // DB암호
+  database: 'bridge'         //사용할 DB명
+});
+
 
 //개발소스 모듈
-const   stage = require('./routes/stage');
+const   main = require('./routes/main');
+const   users = require('./routes/users');
+const   step = require('./routes/step');
 const   orders = require('./routes/orders');
 const   status = require('./routes/status');
 const   system = require('./routes/system');
@@ -29,16 +41,18 @@ app.use(session({ key: 'sid',
 
                   
 // URI와 핸들러를 매핑
-app.use('/', stage); 
+app.use('/', main);
+app.use('/users', users);
+app.use('/step', step); 
 app.use('/orders', orders);
 app.use('/status', status);
 app.use('/system', system);
 
 
 
-const port = 3001;
+const port = 3000;
 app.listen(port, function(){
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`app listening at http://localhost:${port}`);
 });
   
 
