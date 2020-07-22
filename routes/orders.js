@@ -34,7 +34,7 @@ const GetOrder = (req, res) => {   // 발주 현황 화면 출력
           htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/orders.ejs', 'utf8'); // Content
           htmlstream = htmlstream + fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');  // Footer
 
-          sql_str = " select * from orders"; // 발주조회SQL
+          sql_str = " select * from orders order by ordernum desc;"; // 발주조회SQL
 
           res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' });
 
